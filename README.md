@@ -1,4 +1,4 @@
-
+# Attendance tracker
 ##  About
 
 Attendance Tracker is a simple web application designed to record and manage attendance easily. It helps users track attendance details in a clear and organized way.
