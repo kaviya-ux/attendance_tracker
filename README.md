@@ -25,6 +25,6 @@ Attendance Tracker is a simple web application designed to record and manage att
 3. Open `index.html` in your browser.
 4. Start tracking attendance.
 
-## 🎯 Purpose
+##  Purpose
 
 This project was created to practice frontend development and JavaScript concepts while building a useful attendance management application.
