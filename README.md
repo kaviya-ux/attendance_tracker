@@ -1,4 +1,3 @@
-# Attendance Tracker
 
 ##  About
 
