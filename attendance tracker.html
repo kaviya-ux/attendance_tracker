@@ -192,7 +192,8 @@
         }
         function markPresent(id) {
             const student = students.find(student => student.id === id);
-            if (!student) return;
+            if (!student) 
+                return;
             student.present++;
             student.total++;
             saveStudents();
@@ -200,7 +201,8 @@
         }
         function markAbsent(id) {
             const student =students.find(student => student.id === id);
-            if (!student) return;
+            if (!student) 
+                return;
             student.absent++;
             student.total++;
             saveStudents();
@@ -208,7 +210,8 @@
         }
         function deleteStudent(id) {
             const confirmDelete = confirm("Delete this student?");
-            if (!confirmDelete) return;
+            if (!confirmDelete)
+                return;
             students = students.filter(student => student.id !== id);
             saveStudents();
             displayStudents();
@@ -219,7 +222,8 @@
                 return;
             }
             const confirmClear = confirm("Are you sure? This will permanently clear all student records and attendance.");
-            if (!confirmClear) return;
+            if (!confirmClear) 
+                return;
             students = [];
             localStorage.removeItem( "attendanceStudents" );
             document.getElementById( "searchInput" ).value = "";
