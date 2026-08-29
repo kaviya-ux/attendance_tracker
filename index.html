@@ -1,313 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Attendance Register</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.4.1/tailwind.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Tracker</title>
 <style>
-  :root{
-    --paper: #EFEAD8;
-    --paper-dark: #E3DCC4;
-    --ink: #1D2B4F;
-    --ink-soft: #3B4A6B;
-    --present: #2F6B4F;
-    --absent: #B0432E;
-    --rule: #C9BFA0;
-    --brass: #A8823A;
-    --cover: #241B15;
-    --cover-hi: #362A20;
-  }
-  html,body{height:100%;}
-  body{
-    background: radial-gradient(1200px 800px at 50% -10%, var(--cover-hi), var(--cover));
-    font-family: 'Source Serif 4', serif;
-    color: var(--ink);
-    min-height:100vh;
-  }
-  .type-display{ font-family:'Special Elite', monospace; letter-spacing:0.5px; }
-  .type-mono{ font-family:'JetBrains Mono', monospace; }
-
-  .ruled{
-    background-image: repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 47px,
-      var(--rule) 48px
-    );
+  * {
+    box-sizing: border-box;
   }
 
-  .book{
-    background: var(--paper);
-    box-shadow:
-      0 30px 60px -20px rgba(0,0,0,0.6),
-      0 0 0 1px rgba(0,0,0,0.15);
-    position:relative;
-  }
-  .book::before{
-    content:"";
-    position:absolute;
-    top:0; bottom:0; left:50%;
-    width:26px;
-    margin-left:-13px;
-    background: linear-gradient(to right, rgba(0,0,0,0.14), rgba(0,0,0,0.02) 30%, rgba(0,0,0,0.02) 70%, rgba(0,0,0,0.14));
-    pointer-events:none;
-  }
-  @media (max-width: 900px){
-    .book::before{ display:none; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    margin: 0;
   }
 
-  .ring{
-    width:16px; height:16px;
-    border-radius:9999px;
-    background: radial-gradient(circle at 35% 30%, #d8b877, var(--brass) 60%, #6e5423 100%);
-    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.4);
+  .container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .stamp-btn{
-    transition: transform .15s ease;
-    transform: rotate(-2deg);
-  }
-  .stamp-btn:active{ transform: scale(0.9) rotate(-2deg); }
-  .stamp-pop{
-    animation: stampDown .28s ease;
-  }
-  @keyframes stampDown{
-    0%{ transform: scale(1.6) rotate(-8deg); opacity:0; }
-    60%{ transform: scale(0.92) rotate(-2deg); opacity:1; }
-    100%{ transform: scale(1) rotate(-2deg); opacity:1; }
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
   }
 
-  .status-pill{
-    font-family:'Special Elite', monospace;
-    border: 2px solid currentColor;
-    border-radius: 4px;
+  .add-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
   }
 
-  ::selection{ background: var(--brass); color:#fff; }
+  .add-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+  }
 
-  input::placeholder{ color:#8b8367; }
+  .add-form button {
+    padding: 10px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
-  .scroll-thin::-webkit-scrollbar{ width:8px; }
-  .scroll-thin::-webkit-scrollbar-thumb{ background: var(--rule); border-radius:4px; }
+  .add-form button:hover {
+    background-color: #2d81b8;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .student-name {
+    font-size: 16px;
+    color: #2c3e50;
+  }
+
+  .status-buttons button {
+    padding: 6px 12px;
+    margin-left: 6px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+  }
+
+  .present-btn {
+    background-color: #cfcfcf;
+  }
+
+  .present-btn.active {
+    background-color: #2ecc71;
+  }
+
+  .absent-btn {
+    background-color: #cfcfcf;
+  }
+
+  .absent-btn.active {
+    background-color: #e74c3c;
+  }
+
+  .remove-btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 6px;
+  }
+
+  .remove-btn:hover {
+    color: #e74c3c;
+  }
+
+  .summary {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 15px;
+    color: #2c3e50;
+  }
+
+  .empty-message {
+    text-align: center;
+    color: #999;
+    padding: 20px 0;
+  }
 </style>
 </head>
-<body class="p-4 sm:p-8">
+<body>
 
-  <div class="max-w-5xl mx-auto">
+<div class="container">
+  <h1>Attendance Tracker</h1>
 
-    <!-- Cover header with brass rings -->
-    <div class="flex justify-center gap-6 mb-[-14px] relative z-10">
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-    </div>
+  <!-- Form to add a new student -->
+  <form class="add-form" id="add-form">
+    <input type="text" id="name-input" placeholder="Enter student name" required>
+    <button type="submit">Add</button>
+  </form>
 
-    <div class="book rounded-sm overflow-hidden grid grid-cols-1 md:grid-cols-[300px_1fr]">
+  <!-- List of students shows up here -->
+  <ul id="student-list"></ul>
 
-      <!-- LEFT PAGE: title + add entry -->
-      <div class="px-6 sm:px-8 pt-10 pb-8 border-b md:border-b-0 md:border-r border-[var(--rule)]/60">
-        <p class="type-mono text-xs tracking-[0.3em] text-[var(--ink-soft)] uppercase">Roll Book</p>
-        <h1 class="type-display text-3xl sm:text-4xl leading-tight mt-2 mb-1">Attendance<br/>Register</h1>
-        <p id="today" class="type-mono text-xs text-[var(--ink-soft)] mb-8"></p>
+  <p class="empty-message" id="empty-message">No students added yet.</p>
 
-        <form id="add-form" class="space-y-3">
-          <div>
-            <label class="type-mono text-[11px] uppercase tracking-wider text-[var(--ink-soft)]">Name</label>
-            <input id="name-input" type="text" required placeholder="e.g. Priya Raman"
-              class="w-full mt-1 bg-transparent border-b-2 border-[var(--ink)]/70 focus:border-[var(--brass)] outline-none py-1.5 text-lg" />
-          </div>
-          <button type="submit"
-            class="w-full mt-2 type-display text-sm tracking-wide bg-[var(--ink)] text-[var(--paper)] rounded-sm py-2.5 hover:bg-[var(--ink-soft)] transition-colors">
-            + Add to roll
-          </button>
-        </form>
-
-        <div class="mt-10 pt-6 border-t border-[var(--rule)]">
-          <p class="type-mono text-[11px] uppercase tracking-wider text-[var(--ink-soft)] mb-3">Today's tally</p>
-          <div class="flex gap-3">
-            <div class="flex-1 border-2 border-[var(--present)] rounded-sm p-3 text-center">
-              <div id="count-present" class="type-mono text-2xl font-bold text-[var(--present)]">0</div>
-              <div class="type-mono text-[10px] uppercase tracking-wider text-[var(--present)] mt-0.5">Present</div>
-            </div>
-            <div class="flex-1 border-2 border-[var(--absent)] rounded-sm p-3 text-center">
-              <div id="count-absent" class="type-mono text-2xl font-bold text-[var(--absent)]">0</div>
-              <div class="type-mono text-[10px] uppercase tracking-wider text-[var(--absent)] mt-0.5">Absent</div>
-            </div>
-          </div>
-        </div>
-
-        <button id="reset-btn" class="type-mono text-[11px] uppercase tracking-wider text-[var(--ink-soft)]/70 hover:text-[var(--absent)] mt-8 underline decoration-dotted">
-          Clear entire roll
-        </button>
-      </div>
-
-      <!-- RIGHT PAGE: ruled list -->
-      <div class="ruled px-6 sm:px-8 pt-10 pb-8 min-h-[520px]">
-        <div class="flex items-baseline justify-between mb-4">
-          <p class="type-mono text-xs tracking-[0.3em] text-[var(--ink-soft)] uppercase">Entries</p>
-          <p id="entry-count" class="type-mono text-xs text-[var(--ink-soft)]">0 students</p>
-        </div>
-
-        <div id="empty-state" class="hidden py-16 text-center">
-          <p class="type-display text-lg text-[var(--ink-soft)]">The page is blank.</p>
-          <p class="text-sm text-[var(--ink-soft)] mt-1">Add a student on the left to start today's roll.</p>
-        </div>
-
-        <ul id="roster-list" class="divide-y divide-[var(--rule)]/0 scroll-thin max-h-[560px] overflow-y-auto"></ul>
-      </div>
-
-    </div>
-
-    <p class="text-center type-mono text-[11px] text-[var(--paper-dark)]/70 mt-6">
-      Records are saved in this browser only.
-    </p>
+  <!-- Present/Absent totals -->
+  <div class="summary">
+    <span>Present: <strong id="present-count">0</strong></span>
+    <span>Absent: <strong id="absent-count">0</strong></span>
   </div>
+</div>
 
 <script>
-  const STORAGE_KEY = 'attendance-register-records';
+  // This array holds all student records.
+  // Each student is an object like: { name: "John", status: "" }
+  // status can be "", "present", or "absent"
+  let students = [];
 
-  /** @type {{id:string, name:string, status:'unmarked'|'present'|'absent'}[]} */
-  let records = [];
+  const form = document.getElementById('add-form');
+  const nameInput = document.getElementById('name-input');
+  const studentList = document.getElementById('student-list');
+  const emptyMessage = document.getElementById('empty-message');
+  const presentCount = document.getElementById('present-count');
+  const absentCount = document.getElementById('absent-count');
 
-  function load(){
-    try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      records = raw ? JSON.parse(raw) : [];
-    }catch(e){
-      records = [];
-    }
-  }
+  // Runs whenever a student is added, marked, or removed
+  function renderStudents() {
+    studentList.innerHTML = ''; // clear the list first
 
-  function save(){
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
-  }
-
-  function uid(){
-    return 'r' + Math.random().toString(36).slice(2, 10);
-  }
-
-  function setToday(){
-    const el = document.getElementById('today');
-    const d = new Date();
-    el.textContent = d.toLocaleDateString(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-  }
-
-  function render(){
-    const list = document.getElementById('roster-list');
-    const empty = document.getElementById('empty-state');
-    const countEl = document.getElementById('entry-count');
-
-    list.innerHTML = '';
-
-    if(records.length === 0){
-      empty.classList.remove('hidden');
+    if (students.length === 0) {
+      emptyMessage.style.display = 'block';
     } else {
-      empty.classList.add('hidden');
+      emptyMessage.style.display = 'none';
     }
 
-    countEl.textContent = records.length + (records.length === 1 ? ' student' : ' students');
-
-    records.forEach(rec => {
+    students.forEach(function (student, index) {
       const li = document.createElement('li');
-      li.className = 'flex items-center justify-between gap-3 py-3';
-
-      const statusColor = rec.status === 'present' ? 'var(--present)'
-                          : rec.status === 'absent' ? 'var(--absent)'
-                          : 'var(--ink-soft)';
-      const statusLabel = rec.status === 'present' ? 'PRESENT'
-                          : rec.status === 'absent' ? 'ABSENT'
-                          : 'UNMARKED';
 
       li.innerHTML = `
-        <div class="min-w-0">
-          <p class="truncate text-lg">${escapeHtml(rec.name)}</p>
-          <p class="status-pill inline-block text-[10px] px-1.5 py-0.5 mt-1" style="color:${statusColor}">${statusLabel}</p>
-        </div>
-        <div class="flex items-center gap-2 shrink-0">
-          <button data-action="present" data-id="${rec.id}"
-            class="stamp-btn type-display text-xs px-3 py-1.5 rounded-sm border-2"
-            style="border-color:var(--present); color:${rec.status==='present' ? '#fff' : 'var(--present)'}; background:${rec.status==='present' ? 'var(--present)' : 'transparent'};">
-            Present
-          </button>
-          <button data-action="absent" data-id="${rec.id}"
-            class="stamp-btn type-display text-xs px-3 py-1.5 rounded-sm border-2"
-            style="border-color:var(--absent); color:${rec.status==='absent' ? '#fff' : 'var(--absent)'}; background:${rec.status==='absent' ? 'var(--absent)' : 'transparent'};">
-            Absent
-          </button>
-          <button data-action="remove" data-id="${rec.id}"
-            class="type-mono text-[var(--ink-soft)]/50 hover:text-[var(--absent)] text-lg leading-none px-1" title="Remove">
-            &times;
-          </button>
-        </div>
+        <span class="student-name">${student.name}</span>
+        <span class="status-buttons">
+          <button class="present-btn ${student.status === 'present' ? 'active' : ''}" onclick="markStatus(${index}, 'present')">Present</button>
+          <button class="absent-btn ${student.status === 'absent' ? 'active' : ''}" onclick="markStatus(${index}, 'absent')">Absent</button>
+          <button class="remove-btn" onclick="removeStudent(${index})">&times;</button>
+        </span>
       `;
-      list.appendChild(li);
+
+      studentList.appendChild(li);
     });
 
-    const present = records.filter(r => r.status === 'present').length;
-    const absent = records.filter(r => r.status === 'absent').length;
-    document.getElementById('count-present').textContent = present;
-    document.getElementById('count-absent').textContent = absent;
+    updateSummary();
   }
 
-  function escapeHtml(str){
-    const d = document.createElement('div');
-    d.textContent = str;
-    return d.innerHTML;
+  // Updates the Present/Absent counters at the bottom
+  function updateSummary() {
+    const presentTotal = students.filter(s => s.status === 'present').length;
+    const absentTotal = students.filter(s => s.status === 'absent').length;
+
+    presentCount.textContent = presentTotal;
+    absentCount.textContent = absentTotal;
   }
 
-  document.getElementById('add-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const input = document.getElementById('name-input');
-    const name = input.value.trim();
-    if(!name) return;
-    records.push({ id: uid(), name, status: 'unmarked' });
-    input.value = '';
-    save();
-    render();
+  // Marks a student as present or absent
+  function markStatus(index, status) {
+    // Clicking the same status again clears it
+    if (students[index].status === status) {
+      students[index].status = '';
+    } else {
+      students[index].status = status;
+    }
+    renderStudents();
+  }
+
+  // Removes a student from the list
+  function removeStudent(index) {
+    students.splice(index, 1);
+    renderStudents();
+  }
+
+  // Handles the "Add" form submission
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // stop the page from refreshing
+
+    const name = nameInput.value.trim();
+    if (name === '') return;
+
+    students.push({ name: name, status: '' });
+    nameInput.value = '';
+    renderStudents();
   });
 
-  document.getElementById('roster-list').addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-action]');
-    if(!btn) return;
-    const { action, id } = btn.dataset;
-    const rec = records.find(r => r.id === id);
-    if(!rec) return;
-
-    if(action === 'remove'){
-      records = records.filter(r => r.id !== id);
-    } else if(action === 'present'){
-      rec.status = rec.status === 'present' ? 'unmarked' : 'present';
-    } else if(action === 'absent'){
-      rec.status = rec.status === 'absent' ? 'unmarked' : 'absent';
-    }
-    save();
-    render();
-
-    if(action === 'present' || action === 'absent'){
-      requestAnimationFrame(() => {
-        const el = document.querySelector(`button[data-id="${id}"][data-action="${action}"]`);
-        if(el){ el.classList.add('stamp-pop'); setTimeout(() => el.classList.remove('stamp-pop'), 300); }
-      });
-    }
-  });
-
-  document.getElementById('reset-btn').addEventListener('click', () => {
-    if(records.length === 0) return;
-    if(confirm('Clear the entire roll? This cannot be undone.')){
-      records = [];
-      save();
-      render();
-    }
-  });
-
-  load();
-  setToday();
-  render();
+  // Show the empty message on first load
+  renderStudents();
 </script>
+
 </body>
 </html>
