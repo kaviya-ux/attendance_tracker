@@ -53,8 +53,4 @@ No installation, no npm, no build step required.
 - Persist the student list with `localStorage` so it survives a page refresh
 - Track attendance by date, with a history view per student
 - Export attendance summary as CSV
-- Add a search/filter bar for large class lists
-
-## License
-
-Free to use for learning or personal projects.
+- Add a search/filter bar for large class list
