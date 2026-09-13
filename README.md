@@ -1,4 +1,4 @@
-# 📋 Attendance Tracker system
+# 📋 Attendance Tracker
 
 A simple, single-file attendance tracker built with HTML, CSS, and vanilla JavaScript. Add students, mark them present or absent with a click, and see live totals — all in one page, no backend required.
 
