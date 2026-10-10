@@ -47,10 +47,3 @@ Everything lives in a single `index.html` file, making it easy to open, edit, an
 2. Open `index.html` in your browser.
 
 No installation, no npm, no build step required.
-
-## Possible Improvements
-
-- Persist the student list with `localStorage` so it survives a page refresh
-- Track attendance by date, with a history view per student
-- Export attendance summary as CSV
-- Add a search/filter bar for large class list
