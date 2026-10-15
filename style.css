@@ -1,0 +1,185 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    padding: 30px 15px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #00000015;
+}
+
+h1 {
+    text-align: center;
+    color: #2563eb;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.date-box {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input {
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.add-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.add-box input {
+    flex: 1;
+    min-width: 0;
+}
+
+button {
+    border: none;
+    padding: 11px 15px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    background: #2563eb;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: #eff6ff;
+    padding: 18px 10px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.card h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 25px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.present-card {
+    background: #dcfce7;
+}
+
+.present-card p {
+    color: #15803d;
+}
+
+.absent-card {
+    background: #fee2e2;
+}
+
+.absent-card p {
+    color: #dc2626;
+}
+
+.percentage-card {
+    background: #f3e8ff;
+}
+
+.percentage-card p {
+    color: #7e22ce;
+}
+
+.table-box {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+th, td {
+    padding: 13px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #2563eb;
+    color: white;
+}
+
+.status-button {
+    min-width: 90px;
+}
+
+.present-button {
+    background: #16a34a;
+}
+
+.absent-button {
+    background: #dc2626;
+}
+
+.delete-button {
+    background: #475569;
+}
+
+#message {
+    margin-top: 15px;
+    color: #dc2626;
+    text-align: center;
+}
+
+@media (max-width: 650px) {
+    .container {
+        padding: 15px;
+    }
+
+    .summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .add-box {
+        flex-direction: column;
+    }
+
+    .add-box button {
+        width: 100%;
+    }
+}
